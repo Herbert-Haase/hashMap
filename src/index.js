@@ -1,5 +1,5 @@
-import "./styles/reset.css";
-import "./styles/style.css";
+// import "./styles/reset.css";
+// import "./styles/style.css";
 
 class HashMap {
   constructor() {
@@ -18,17 +18,19 @@ class HashMap {
     return hashCode;
   }
   set(key, value) {
-    const index = hash(key) % this.buckets.length;
+    const index = this.hash(key) % this.buckets.length;
 
-    if (index < 0 || index >= buckets.length) {
+    if (index < 0 || index >= this.buckets.length) {
       throw new Error("Trying to access index out of bound");
     }
     if (this.buckets[index] === undefined) {
       this.capacity++;
     }
-    const node = { key: value };
+    const node = { [key]: value };
     this.buckets[index] = node;
   }
   get(key) {}
   has(key) {}
 }
+
+export { HashMap };
