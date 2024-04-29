@@ -44,8 +44,19 @@ class HashMap {
       this.buckets[index].append(key, value);
     }
   }
-  get(key) {}
-  has(key) {}
+  get(key) {
+    const index = this.hash(key) % this.buckets.length;
+
+    try {
+      const findIndex = this.buckets[index].find(key);
+      return this.buckets[index].at(findIndex).value;
+    } catch (err) {
+      return null;
+    }
+  }
+  has(key) {
+    return this.get(key) === null ? false : true;
+  }
 }
 
 export { HashMap };

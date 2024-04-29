@@ -27,4 +27,22 @@ describe("tests", () => {
     hashMap.set("AAA", "valueAAA");
     equal(hashMap.buckets.length, 32);
   });
+  it("get", () => {
+    const hashMap = new HashMap();
+    hashMap.set("Carlos", "valueCarlos");
+    equal(hashMap.get("Carlos"), "valueCarlos");
+    hashMap.set("Carla", "valueCarla");
+    equal(hashMap.get("Carla"), "valueCarla");
+    equal(hashMap.get("Carlos"), "valueCarlos");
+    equal(hashMap.get("missingNo"), null);
+  });
+  it("has", () => {
+    const hashMap = new HashMap();
+    hashMap.set("Carlos", "valueCarlos");
+    equal(hashMap.has("Carlos"), true);
+    hashMap.set("Carla", "valueCarla");
+    equal(hashMap.has("Carla"), true);
+    equal(hashMap.has("Carlos"), true);
+    equal(hashMap.has("missingNo"), false);
+  });
 });
