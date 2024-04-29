@@ -5,99 +5,66 @@ import { HashMap } from "../src/index.js";
 describe("tests", () => {
   it("save to a bucket", () => {
     const hashMap = new HashMap();
-    hashMap.set("Carlos", "I am the old value.");
+    hashMap.set("Carlos");
     equal(
       hashMap.buckets[hashMap.hash("Carlos") % hashMap.buckets.length]["head"][
-        "value"
+        "key"
       ],
-      "I am the old value."
+      "Carlos"
     );
-    hashMap.set("Carlos", "I am the new value.");
+    hashMap.set("Carla");
     equal(
-      hashMap.buckets[hashMap.hash("Carlos") % hashMap.buckets.length]["head"][
-        "value"
+      hashMap.buckets[hashMap.hash("Carla") % hashMap.buckets.length]["head"][
+        "key"
       ],
-      "I am the new value."
+      "Carla"
     );
   });
   it("grow bucket List size", () => {
     const hashMap = new HashMap();
     hashMap.loadFactor = 0.1;
-    hashMap.set("ZZZ", "valueZZZ");
+    hashMap.set("ZZZ");
     equal(hashMap.buckets.length, 16);
-    hashMap.set("AAA", "valueAAA");
+    hashMap.set("AAA");
     equal(hashMap.buckets.length, 32);
-  });
-  it("get", () => {
-    const hashMap = new HashMap();
-    hashMap.set("Carlos", "valueCarlos");
-    equal(hashMap.get("Carlos"), "valueCarlos");
-    hashMap.set("Carla", "valueCarla");
-    equal(hashMap.get("Carla"), "valueCarla");
-    equal(hashMap.get("Carlos"), "valueCarlos");
-    equal(hashMap.get("missingNo"), null);
   });
   it("has", () => {
     const hashMap = new HashMap();
-    hashMap.set("Carlos", "valueCarlos");
+    hashMap.set("Carlos");
     equal(hashMap.has("Carlos"), true);
-    hashMap.set("Carla", "valueCarla");
+    hashMap.set("Carla");
     equal(hashMap.has("Carla"), true);
     equal(hashMap.has("Carlos"), true);
     equal(hashMap.has("missingNo"), false);
   });
   it("remove", () => {
     const hashMap = new HashMap();
-    hashMap.set("Carlos", "valueCarlos");
-    hashMap.set("Carl", "valueCarlos");
-    hashMap.set("Carls", "valueCarlos");
+    hashMap.set("Carlos");
+    hashMap.set("Carl");
+    hashMap.set("Carls");
     equal(hashMap.remove("Carlos"), true);
     equal(hashMap.remove("Carla"), false);
   });
   it("length", () => {
     const hashMap = new HashMap();
-    hashMap.set("Carlos", "valueCarlos");
-    hashMap.set("Carl", "valueCarlos");
-    hashMap.set("Carls", "valueCarlos");
+    hashMap.set("Carlos");
+    hashMap.set("Carl");
+    hashMap.set("Carls");
     equal(hashMap.length, 3);
   });
   it("clear", () => {
     const hashMap = new HashMap();
-    hashMap.set("Carlos", "valueCarlos");
-    hashMap.set("Carl", "valueCarlos");
-    hashMap.set("Carls", "valueCarlos");
+    hashMap.set("Carlos");
+    hashMap.set("Carl");
+    hashMap.set("Carls");
     hashMap.clear();
     equal(hashMap.length, 0);
   });
   it("keys", () => {
     const hashMap = new HashMap();
-    hashMap.set("Carlos", "valueCarlos");
-    hashMap.set("Carl", "valueCarlos");
-    hashMap.set("Carls", "valueCarlos");
+    hashMap.set("Carlos");
+    hashMap.set("Carl");
+    hashMap.set("Carls");
     deepEqual(hashMap.keys().sort(), ["Carlos", "Carl", "Carls"].sort());
-  });
-  it("values", () => {
-    const hashMap = new HashMap();
-    hashMap.set("Carlos", "valueCarlos");
-    hashMap.set("Carl", "valueCarl");
-    hashMap.set("Carls", "valueCarls");
-    deepEqual(
-      hashMap.values().sort(),
-      ["valueCarlos", "valueCarl", "valueCarls"].sort()
-    );
-  });
-  it("entries", () => {
-    const hashMap = new HashMap();
-    hashMap.set("Carlos", "valueCarlos");
-    hashMap.set("Carl", "valueCarl");
-    hashMap.set("Carls", "valueCarls");
-    deepEqual(
-      hashMap.entries().sort(),
-      [
-        ["Carlos", "valueCarlos"],
-        ["Carl", "valueCarl"],
-        ["Carls", "valueCarls"],
-      ].sort()
-    );
   });
 });

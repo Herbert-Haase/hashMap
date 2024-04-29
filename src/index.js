@@ -1,5 +1,3 @@
-// import "./styles/reset.css";
-// import "./styles/style.css";
 import { LinkedList } from "./linkedList.js";
 
 class HashMap {
@@ -23,7 +21,7 @@ class HashMap {
 
     return hashCode;
   }
-  set(key, value) {
+  set(key) {
     const index = this.hash(key) % this.buckets.length;
 
     // anticheat
@@ -35,27 +33,21 @@ class HashMap {
       // check if time to grow array
       this.capacity++;
       this.grow();
-      this.buckets[index] = new LinkedList(key, value);
-      // if there is a key, replace value
-    } else if (this.buckets[index].contains(key)) {
-      this.buckets[index].insertAt(key, value, this.buckets[index].find(key));
+      this.buckets[index] = new LinkedList(key);
       // if there is no key, create new node
     } else {
       this.buckets[index].append(key, value);
     }
   }
-  get(key) {
+  has(key) {
     const index = this.hash(key) % this.buckets.length;
 
     try {
-      const findIndex = this.buckets[index].find(key);
-      return this.buckets[index].at(findIndex).value;
+      this.buckets[index].find(key);
+      return true;
     } catch (err) {
-      return null;
+      return false;
     }
-  }
-  has(key) {
-    return this.get(key) === null ? false : true;
   }
   remove(key) {
     const entryPresent = this.has(key);
@@ -90,34 +82,6 @@ class HashMap {
       }
     }
     return arrayOfKeys;
-  }
-  values() {
-    const arrayOfValues = [];
-    for (let bucket of this.buckets) {
-      if (bucket !== undefined) {
-        let currentNode = bucket.head;
-        for (let i = 0; i < bucket.size(); i++) {
-          arrayOfValues.push(currentNode.value);
-          currentNode = currentNode.next;
-        }
-      } else {
-      }
-    }
-    return arrayOfValues;
-  }
-  entries() {
-    const arrayOfEntries = [];
-    for (let bucket of this.buckets) {
-      if (bucket !== undefined) {
-        let currentNode = bucket.head;
-        for (let i = 0; i < bucket.size(); i++) {
-          arrayOfEntries.push([currentNode.key, currentNode.value]);
-          currentNode = currentNode.next;
-        }
-      } else {
-      }
-    }
-    return arrayOfEntries;
   }
 }
 

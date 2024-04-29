@@ -1,18 +1,18 @@
 import { Node } from "./llNode.js";
 
 class LinkedList {
-  constructor(key, value) {
-    this.head = new Node(key, value);
+  constructor(key) {
+    this.head = new Node(key);
   }
-  append(key, value) {
+  append(key) {
     let currentNode = this.head;
     while (currentNode.next !== null) {
       currentNode = currentNode.next;
     }
-    currentNode.next = new Node(key, value);
+    currentNode.next = new Node(key);
   }
-  prepend(key, value) {
-    const newNode = new Node(key, value);
+  prepend(key) {
+    const newNode = new Node(key);
     newNode.next = this.head;
     this.head = newNode;
   }
@@ -43,11 +43,11 @@ class LinkedList {
     }
   }
 
-  insertAt(key, value, index) {
-    const newNode = new Node(key, value);
+  insertAt(key, index) {
+    const newNode = new Node(key);
     newNode.next = this.at(index);
     if (index < 1) {
-      this.prepend(key, value);
+      this.prepend(key);
     } else {
       this.at(index - 1).next = newNode;
     }
