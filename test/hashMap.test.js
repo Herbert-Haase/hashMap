@@ -1,4 +1,5 @@
 import { equal } from "assert";
+import { deepEqual } from "assert";
 import { HashMap } from "../src/index.js";
 
 describe("tests", () => {
@@ -67,5 +68,22 @@ describe("tests", () => {
     hashMap.set("Carls", "valueCarlos");
     hashMap.clear();
     equal(hashMap.length, 0);
+  });
+  it("keys", () => {
+    const hashMap = new HashMap();
+    hashMap.set("Carlos", "valueCarlos");
+    hashMap.set("Carl", "valueCarlos");
+    hashMap.set("Carls", "valueCarlos");
+    deepEqual(hashMap.keys().sort(), ["Carlos", "Carl", "Carls"].sort());
+  });
+  it("values", () => {
+    const hashMap = new HashMap();
+    hashMap.set("Carlos", "valueCarlos");
+    hashMap.set("Carl", "valueCarl");
+    hashMap.set("Carls", "valueCarls");
+    deepEqual(
+      hashMap.values().sort(),
+      ["valueCarlos", "valueCarl", "valueCarls"].sort()
+    );
   });
 });

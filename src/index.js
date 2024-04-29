@@ -77,6 +77,34 @@ class HashMap {
     this.buckets = new Array(this.buckets.length);
     this.capacity = 0;
   }
+  keys() {
+    const arrayOfKeys = [];
+    for (let bucket of this.buckets) {
+      if (bucket !== undefined) {
+        let currentNode = bucket.head;
+        for (let i = 0; i < bucket.size(); i++) {
+          arrayOfKeys.push(currentNode.key);
+          currentNode = currentNode.next;
+        }
+      } else {
+      }
+    }
+    return arrayOfKeys;
+  }
+  values() {
+    const arrayOfValues = [];
+    for (let bucket of this.buckets) {
+      if (bucket !== undefined) {
+        let currentNode = bucket.head;
+        for (let i = 0; i < bucket.size(); i++) {
+          arrayOfValues.push(currentNode.value);
+          currentNode = currentNode.next;
+        }
+      } else {
+      }
+    }
+    return arrayOfValues;
+  }
 }
 
 export { HashMap };
