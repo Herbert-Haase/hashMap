@@ -1,6 +1,6 @@
 import { equal } from "assert";
 import { deepEqual } from "assert";
-import { HashMap } from "../src/index.js";
+import { HashMap } from "../src/hashMap.js";
 
 describe("tests", () => {
   it("save to a bucket", () => {
