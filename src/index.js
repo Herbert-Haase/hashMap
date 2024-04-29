@@ -70,6 +70,13 @@ class HashMap {
       return entryPresent;
     }
   }
+  get length() {
+    return this.capacity;
+  }
+  clear() {
+    this.buckets = new Array(this.buckets.length);
+    this.capacity = 0;
+  }
 }
 
 export { HashMap };

@@ -53,4 +53,19 @@ describe("tests", () => {
     equal(hashMap.remove("Carlos"), true);
     equal(hashMap.remove("Carla"), false);
   });
+  it("length", () => {
+    const hashMap = new HashMap();
+    hashMap.set("Carlos", "valueCarlos");
+    hashMap.set("Carl", "valueCarlos");
+    hashMap.set("Carls", "valueCarlos");
+    equal(hashMap.length, 3);
+  });
+  it("clear", () => {
+    const hashMap = new HashMap();
+    hashMap.set("Carlos", "valueCarlos");
+    hashMap.set("Carl", "valueCarlos");
+    hashMap.set("Carls", "valueCarlos");
+    hashMap.clear();
+    equal(hashMap.length, 0);
+  });
 });
