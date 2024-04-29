@@ -105,6 +105,20 @@ class HashMap {
     }
     return arrayOfValues;
   }
+  entries() {
+    const arrayOfEntries = [];
+    for (let bucket of this.buckets) {
+      if (bucket !== undefined) {
+        let currentNode = bucket.head;
+        for (let i = 0; i < bucket.size(); i++) {
+          arrayOfEntries.push([currentNode.key, currentNode.value]);
+          currentNode = currentNode.next;
+        }
+      } else {
+      }
+    }
+    return arrayOfEntries;
+  }
 }
 
 export { HashMap };

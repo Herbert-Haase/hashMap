@@ -86,4 +86,18 @@ describe("tests", () => {
       ["valueCarlos", "valueCarl", "valueCarls"].sort()
     );
   });
+  it("entries", () => {
+    const hashMap = new HashMap();
+    hashMap.set("Carlos", "valueCarlos");
+    hashMap.set("Carl", "valueCarl");
+    hashMap.set("Carls", "valueCarls");
+    deepEqual(
+      hashMap.entries().sort(),
+      [
+        ["Carlos", "valueCarlos"],
+        ["Carl", "valueCarl"],
+        ["Carls", "valueCarls"],
+      ].sort()
+    );
+  });
 });
