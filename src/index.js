@@ -57,6 +57,19 @@ class HashMap {
   has(key) {
     return this.get(key) === null ? false : true;
   }
+  remove(key) {
+    const entryPresent = this.has(key);
+
+    const index = this.hash(key) % this.buckets.length;
+
+    try {
+      const findIndex = this.buckets[index].find(key);
+      this.buckets[index].removeAt(findIndex);
+    } catch (err) {
+    } finally {
+      return entryPresent;
+    }
+  }
 }
 
 export { HashMap };

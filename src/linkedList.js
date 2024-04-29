@@ -53,7 +53,14 @@ class LinkedList {
     }
   }
   removeAt(index) {
-    this.at(index - 1).next = this.at(index + 1);
+    if (index > 0) {
+      this.at(index - 1).next = this.at(index + 1);
+    } else if (this.head.next === null) {
+      this.head.value = null;
+      this.head.key = null;
+    } else {
+      this.head = this.at(index + 1);
+    }
   }
 
   pop() {

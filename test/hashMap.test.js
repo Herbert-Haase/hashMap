@@ -45,4 +45,12 @@ describe("tests", () => {
     equal(hashMap.has("Carlos"), true);
     equal(hashMap.has("missingNo"), false);
   });
+  it("remove", () => {
+    const hashMap = new HashMap();
+    hashMap.set("Carlos", "valueCarlos");
+    hashMap.set("Carl", "valueCarlos");
+    hashMap.set("Carls", "valueCarlos");
+    equal(hashMap.remove("Carlos"), true);
+    equal(hashMap.remove("Carla"), false);
+  });
 });
